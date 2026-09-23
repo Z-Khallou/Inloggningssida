@@ -1,0 +1,78 @@
+<!DOCTYPE html> <!-- Talar om för webbläsaren att detta är ett modernt HTML5-dokument -->
+<html lang="sv">
+<!-- Rot-elementet som omsluter hela webbsidan. 'lang="sv"' berättar för sökmotorer och skärmläsare att språket är svenska -->
+
+<head>
+    <!-- Head-sektionen innehåller metadata och länkar till externa filer. Inget här syns direkt på själva webbsidan -->
+    <meta charset="UTF-8"> <!-- Teckenkodning. Ser till att webbläsaren kan visa å, ä, ö och specialtecken korrekt -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viktig för Mobile First! Ser till att sidan skalar rätt på mobila skärmar -->
+    <title>Svampletarna</title> <!-- Sidans titel, det är denna text som syns i webbläsarens flik högst upp -->
+
+    <!-- Ikoner och styling -->
+    <!-- Hämtar FontAwesome-biblioteket via en extern länk (CDN) så att vi kan använda deras ikoner (som gubben och hänglåset) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Kopplar in din egen CSS-fil där du har skapat all design och layout -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript -->
+    <!-- Kopplar in din JavaScript-fil. Attributet 'defer' är väldigt viktigt här: det säger åt webbläsaren att vänta med att köra skriptet tills hela HTML-koden har laddats in -->
+    <script src="script.js" defer></script>
+</head>
+
+<body> <!-- Body-sektionen innehåller allt visuellt innehåll som användaren faktiskt ser på skärmen -->
+    <main>
+        <!-- En semantisk tagg som markerar sidans huvudinnehåll. Detta är bra för struktur, SEO och tillgänglighet -->
+
+        <!-- Tom paragraf för JavaScript-meddelanden (t.ex. "Välkommen Kalle") -->
+        <!-- Denna <p>-tagg är tom från början. JavaScript använder dess id ("message") för att skriva in text och lägga till fel-/succéklasser senare -->
+        <p id="message"></p>
+
+        <form id="loginForm">
+            <!-- Formuläret som grupperar inmatningsfälten. Vi lyssnar på 'submit' från detta formulär i vår JavaScript -->
+
+            <!-- Profilikon i toppen -->
+            <div class="profile-icon-container">
+                <!-- Flex-behållare som används för att kunna centrera ikonen via CSS -->
+                <i class="fa-solid fa-circle-user profile-icon"></i> <!-- Själva profilikonen från FontAwesome -->
+            </div>
+
+            <!-- Användarnamn med svävande ikon -->
+            <div class="input-wrapper">
+                <!-- En omslutande låda (wrapper). Med 'position: relative' i CSS kan vi placera ikonen exakt var vi vill inuti fältet -->
+                <i class="fa-solid fa-user input-icon"></i> <!-- Ikonen för användaren (lilla gubben) -->
+                <!-- Input-fält där användaren kan skriva text. 'placeholder' är den gråa guidetexten som försvinner när man börjar skriva -->
+                <input type="text" id="username" placeholder="Användarnamn">
+            </div>
+
+            <!-- Lösenord med svävande hänglås och öga -->
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i> <!-- Ikonen för hänglåset -->
+                <!-- type="password" är det som gör att texten användaren skriver automatiskt döljs som svarta prickar -->
+                <input type="password" id="password" placeholder="Lösenord">
+                <!-- Ikonen för ögat. Denna har ett unikt id ("togglePassword") så vi kan klicka på den med JavaScript för att visa/dölja lösenordet -->
+                <i class="fa-solid fa-eye-slash toggle-password" id="togglePassword"></i>
+            </div>
+
+            <!-- Kom ihåg mig & Glömt lösenord -->
+            <div class="extra-options">
+                <!-- Flex-behållare för att skjuta ut kryssrutan till vänster och länken till höger -->
+                <label class="checkbox-label">
+                    <!-- Genom att lägga <input> inuti en <label> blir även texten "Kom ihåg mig" klickbar, vilket är mer användarvänligt -->
+                    <input type="checkbox" id="rememberMe"> Kom ihåg mig <!-- En ikryssningsbar ruta -->
+                </label>
+                <a href="#" id="forgotPassword">Glömt lösenord?</a>
+                <!-- En standardlänk. '#' används som en tillfällig platshållare när länken ännu inte leder till en annan sida -->
+            </div>
+
+            <!-- Själva submit-knappen. type="submit" triggar att formuläret skickas, vilket fångas upp av vår 'addEventListener' i JavaScript -->
+            <input type="submit" value="Logga in" id="loginBtn">
+        </form>
+
+        <!-- Utloggningsknappen -->
+        <!-- Klassen "hidden" (som vi skapade i CSS med 'display: none') gör att denna knapp är helt osynlig när sidan först laddas. JavaScript tar bort klassen vid inloggning -->
+        <button id="logoutBtn" class="hidden">Logga ut</button>
+    </main>
+</body>
+
+</html>

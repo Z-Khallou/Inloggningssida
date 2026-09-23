@@ -1,0 +1,334 @@
+/* =========================================
+   1. GRUNDINSTÄLLNINGAR & BAKGRUND
+   ========================================= */
+* {
+    /* Väljer alla element på webbsidan */
+    padding: 0;
+    /* Nollställer inre marginaler för alla element */
+    margin: 0;
+    /* Nollställer yttre marginaler för alla element */
+    box-sizing: border-box;
+    /* Inkluderar padding och border i elementets totala storlek */
+    font-family: sans-serif;
+    /* Sätter ett standard sans-serif-typsnitt för all text */
+}
+
+body {
+    /* Styr grundinställningarna för hela sidans visningsyta */
+    background-image: url("bild.jpeg");
+    /* Anger bakgrundsbilden för sidan */
+    background-size: cover;
+    /* Skalar bilden så den täcker hela ytan */
+    background-position: center;
+    /* Centrerar bakgrundsbilden */
+    background-attachment: fixed;
+    /* Låser fast bakgrundsbilden vid skrollning */
+    background-color: #e8ede1;
+    /* Reservfärg om bilden inte laddas */
+
+    display: flex;
+    /* Aktiverar flexbox för layout */
+    flex-direction: column;
+    /* Staplar barn-elementen vertikalt */
+    justify-content: center;
+    /* Centrerar innehållet i höjdled */
+    align-items: center;
+    /* Centrerar innehållet i sidled */
+    min-height: 100vh;
+    /* Sätter lägsta höjd till 100% av skärmens höjd */
+    padding: 1.5rem;
+    /* Lägger till inre marginal runt om bodyn */
+}
+
+/* =========================================
+   2. INLOGGNINGSKORTET (Glassmorphism)
+   ========================================= */
+#loginForm {
+    /* Styr utseendet på inloggningsformuläret */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Vit bakgrund med 20% opacitet (genomskinlighet) */
+    backdrop-filter: blur(0.75rem);
+    /* Skapar frostat glas-effekt (suddar bakgrunden) */
+    -webkit-backdrop-filter: blur(0.75rem);
+    /* Säkerställer stöd för suddning i Safari */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Tunn, halvgenomskinlig vit kantlinje */
+
+    width: 100%;
+    /* Gör formuläret fullt brett som standard */
+    max-width: 24rem;
+    /* Sätter en maxbredd på inloggningskortet */
+    padding: 2rem;
+    /* Inre avstånd inuti inloggningsrutan */
+    border-radius: 1rem;
+    /* Mjukt rundade hörn på rutan */
+
+    display: flex;
+    /* Aktiverar flexbox inuti formuläret */
+    flex-direction: column;
+    /* Staplar formulärets fält under varandra */
+    gap: 1.25rem;
+    /* Skapar ett fast avstånd mellan elementen inuti formuläret */
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+    /* Lägger till en mjuk skugga bakom kortet */
+}
+
+/* =========================================
+   3. IKONER & FÄLT-WRAPPERS
+   ========================================= */
+.profile-icon-container {
+    /* Behållare för den stora profilikonen högst upp */
+    display: flex;
+    /* Aktiverar flexbox för centrering */
+    justify-content: center;
+    /* Centrerar ikonen horisontellt */
+    margin-bottom: 0.5rem;
+    /* Skapar avstånd nedåt mot inmatningsfälten */
+}
+
+.profile-icon {
+    /* Styr själva profilikonens utseende */
+    font-size: 5rem;
+    /* Sätter en stor storlek på ikonen */
+    color: #3b82f6;
+    /* Färgar ikonen blå */
+}
+
+/* Lådan som möjliggör svävande ikoner */
+.input-wrapper {
+    /* Omslutande låda för input-fält och dess ikoner */
+    position: relative;
+    /* Gör att absoluta positionerade ikoner placeras relativt denna låda */
+    width: 100%;
+    /* Låter behållaren ta upp full bredd */
+}
+
+/* De vänstra ikonerna (gubbe, lås) */
+.input-icon {
+    /* Styr utseendet och placeringen för ikonerna till vänster i fälten */
+    position: absolute;
+    /* Placerar ikonen absolut inuti wrappern */
+    left: 1rem;
+    /* Skjuter in ikonen från vänster kant */
+    top: 50%;
+    /* Flyttar ner ikonen till mitten i höjdled */
+    transform: translateY(-50%);
+    /* Finjusterar centreringen exakt i mitten */
+    color: #3b82f6;
+    /* Blå färg på ikonen */
+    font-size: 1.125rem;
+    /* Storlek på ikonen */
+}
+
+/* Ögat till höger */
+.toggle-password {
+    /* Styr utseendet och placeringen för lösenordsögat */
+    position: absolute;
+    /* Placerar ikonen absolut inuti wrappern */
+    right: 1rem;
+    /* Placerar ikonen till höger i fältet */
+    top: 50%;
+    /* Flyttar ner till mitten i höjdled */
+    transform: translateY(-50%);
+    /* Centrerar vertikalt */
+    color: #3b82f6;
+    /* Blå färg på ögat */
+    font-size: 1.125rem;
+    /* Ikonstorlek */
+    cursor: pointer;
+    /* Visar klickbar handpekare vid hovring */
+}
+
+/* Själva textfälten */
+input[type="text"],
+input[type="password"] {
+    /* Styr inmatningsfälten för text och lösenord */
+    width: 100%;
+    /* Fyller hela behållarens bredd */
+    padding: 0.875rem;
+    /* Inre marginal för klickyta */
+    padding-left: 2.75rem;
+    /* Extra utrymme till vänster för ikonen */
+    padding-right: 2.75rem;
+    /* Extra utrymme till höger för ögat */
+    font-size: 1rem;
+    /* Textstorlek (förhindrar auto-zoom på iOS) */
+    border-radius: 0.5rem;
+    /* Rundade hörn på fälten */
+    border: none;
+    /* Tar bort standardramen */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Nästan helt vit bakgrund */
+}
+
+/* =========================================
+   4. KNAPPAR & EXTRA ALTERNATIV
+   ========================================= */
+#loginBtn {
+    /* Styr inloggningsknappens utseende */
+    width: 100%;
+    /* Knappen fyller formulärets bredd */
+    padding: 0.875rem;
+    /* Inre avstånd för knappen */
+    font-size: 1rem;
+    /* Textstorlek på knappen */
+    font-weight: bold;
+    /* Fet textstil */
+    color: white;
+    /* Vit textfärg */
+    background-color: #3b82f6;
+    /* Blå bakgrundsfärg */
+    border: none;
+    /* Ingen standardram */
+    border-radius: 0.5rem;
+    /* Rundade hörn */
+    cursor: pointer;
+    /* Handpekare vid hovring */
+    margin-top: 0.5rem;
+    /* Utrymme ovanför knappen */
+}
+
+#loginBtn:hover {
+    /* Styr knappen när användaren för muspekaren över den */
+    background-color: #2563eb;
+    /* Mörkare blå färg vid hovring */
+}
+
+.extra-options {
+    /* Behållare för "Kom ihåg mig" och "Glömt lösenord" */
+    width: 100%;
+    /* Tar upp full bredd */
+    display: flex;
+    /* Aktiverar flexbox för att sprida ut dem */
+    justify-content: space-between;
+    /* Skjuter isär elementen till varsin kant */
+    align-items: center;
+    /* Centrerar dem vertikalt mot varandra */
+    font-size: 0.875rem;
+    /* Lite mindre textstorlek */
+    color: #333;
+    /* Mörkgrå textfärg */
+}
+
+.checkbox-label {
+    /* Etikett för kryssrutan */
+    display: flex;
+    /* Flexbox för att få box och text på rad */
+    align-items: center;
+    /* Centrerar kryssruta och text i höjdled */
+    gap: 0.5rem;
+    /* Avstånd mellan kryssruta och text */
+    cursor: pointer;
+    /* Handpekare vid hovring */
+}
+
+#forgotPassword {
+    /* Länken för glömt lösenord */
+    text-decoration: none;
+    /* Tar bort standardunderstrykning */
+    color: #3b82f6;
+    /* Blå länkfärg */
+}
+
+#forgotPassword:hover {
+    /* Länken vid hovring */
+    text-decoration: underline;
+    /* Visar understrykning när musen är över */
+}
+
+#logoutBtn {
+    /* Utloggningsknappen */
+    margin-top: 2rem;
+    /* Stort avstånd ovanför knappen */
+    padding: 0.75rem 1.5rem;
+    /* Inre avstånd */
+    background-color: #dc2626;
+    /* Röd varningsfärg */
+    color: white;
+    /* Vit text */
+    border: none;
+    /* Ingen kantlinje */
+    border-radius: 0.5rem;
+    /* Rundade hörn */
+    cursor: pointer;
+    /* Handpekare vid hovring */
+    font-size: 1rem;
+    /* Textstorlek */
+    font-weight: bold;
+    /* Fet text */
+}
+
+#logoutBtn:hover {
+    /* Utloggningsknappen vid hovring */
+    background-color: #b91c1c;
+    /* Mörkare röd färg */
+}
+
+/* =========================================
+   5. MEDIA QUERIES
+   ========================================= */
+@media (min-width: 48rem) {
+
+    /* Anpassningar för skärmar som är minst 48rem breda (768px) */
+    #loginForm {
+        /* Utökar storleken på inloggningskortet på större skärmar */
+        max-width: 28rem;
+        /* Ökar maxbredden */
+        padding: 3rem;
+        /* Ökar den inre marginalen */
+    }
+}
+
+/* =========================================
+   6. JAVASCRIPT HJÄLPKLASSER
+   ========================================= */
+.hidden {
+    /* Klass som används av JavaScript för att dölja element helt */
+    display: none !important;
+    /* Döljer elementet med högsta prioritet */
+}
+
+/* =========================================
+   7. MEDDELANDEN (Välkommen / Felmeddelande)
+   ========================================= */
+#message {
+    /* Stilar textfältet för meddelanden (t.ex. välkommen eller fel) */
+    font-size: 1.25rem;
+    /* Större textstorlek för tydlighet */
+    font-weight: bold;
+    /* Fetstil */
+    text-align: center;
+    /* Centrerad text */
+    margin-bottom: 1.5rem;
+    /* Avstånd nedåt */
+    padding: 1rem;
+    /* Inre avstånd runt meddelandet */
+    border-radius: 0.5rem;
+    /* Rundade hörn */
+    width: 100%;
+    /* Full bredd */
+    max-width: 24rem;
+    /* Maximal bredd */
+}
+
+/* Snygg grön bakgrund när inloggningen lyckas */
+.success-box {
+    /* Klass för lyckad inloggning */
+    background-color: rgb(247, 249, 248);
+    /* Vit/ljus bakgrund */
+    color: #15803d;
+    /* Mörkgrön textfärg */
+    border: 1px solid rgb(0, 0, 0);
+    /* Kantlinje */
+}
+
+/* Snygg röd bakgrund när inloggningen misslyckas */
+.error-box {
+    /* Klass för misslyckad inloggning */
+    background-color: rgb(247, 249, 248);
+    /* Vit/ljus bakgrund */
+    color: #b91c1c;
+    /* Mörkröd textfärg */
+    border: 1px solid rgb(0, 0, 0);
+    /* Kantlinje */
+}
